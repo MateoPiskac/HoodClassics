@@ -44,8 +44,6 @@ public class WebSecurityConfig {
 	@Autowired
 	private UserRepository userRepo;
 	
-	System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-	
 	@Bean
 	@Order(1)
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -55,6 +53,8 @@ public class WebSecurityConfig {
 						.anyRequest().authenticated())
 				.formLogin(Customizer.withDefaults());                                                                                                                                                                                                                                        ;
 		
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");		
+				
 		return http.build();
 	}
 
