@@ -9,10 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/")
 public class HomeController {
-
+/*
 	@GetMapping("/")
 	public ModelAndView welcome() {
 		return new ModelAndView("forward:index.html");
 	}
+	*/
 	
+	@GetMapping("/")
+	public String hello() { return "Hello";}
 }

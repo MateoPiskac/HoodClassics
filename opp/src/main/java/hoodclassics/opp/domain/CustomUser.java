@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="users")
-public class User {
+public class CustomUser {
 
 	@Id
 	@GeneratedValue
@@ -22,7 +22,7 @@ public class User {
 	
 	private String username;
 
-	public User(String name, String surname, String email, String username) {
+	public CustomUser(String name, String surname, String email, String username) {
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
@@ -30,7 +30,7 @@ public class User {
 	}
 
 	//Spring ovo treba ali ne znam zašto
-	public User() {
+	public CustomUser() {
 		this.name = null;
 		this.surname = null;
 		this.email = null;
