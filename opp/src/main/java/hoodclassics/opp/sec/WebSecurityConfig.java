@@ -64,7 +64,7 @@ public class WebSecurityConfig {
 		http.csrf(AbstractHttpConfigurer::disable) // TODO: Naći bolji način za "odzabraniti" (ne vratiti 403) POST
 													// requestove
 				.authorizeHttpRequests(authorizeRequests -> authorizeRequests
-						.requestMatchers("/", "/index.html", "/assets/**").permitAll()
+						.requestMatchers("/", "/index.html", "/assets/**", "/oauth2/**", "/login/**").permitAll()
 						.anyRequest().authenticated())
 				.oauth2Login(config -> config.clientRegistrationRepository(this.clientRegistrationRepository())
 						.userInfoEndpoint(userInfo -> userInfo.userService(this.oauth2UserService()))
