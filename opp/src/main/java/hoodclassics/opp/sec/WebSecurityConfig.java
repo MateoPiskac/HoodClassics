@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import hoodclassics.opp.dao.UserRepository;
@@ -11,15 +12,10 @@ import hoodclassics.opp.domain.CustomUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.core.annotation.Order;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,7 +29,6 @@ import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.IdTokenClaimNames;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
@@ -45,30 +40,36 @@ public class WebSecurityConfig {
 	private UserRepository userRepo;
 	
 	@Bean
-	@Order(1)
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.securityMatcher("/api/**", "/login/**")
-		.csrf(AbstractHttpConfigurer::disable)
-				.authorizeHttpRequests(auth -> auth
-						.anyRequest().authenticated())
-				.formLogin(Customizer.withDefaults());                                                                                                                                                                                                                                        ;
-		
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");		
-				
-		return http.build();
+	public PasswordEncoder passEncoder() {
+		return new BCryptPasswordEncoder();
 	}
-
+	
+	// Kad on vrati usera, Spring će sam provjeriti je li password dobar
+	// Vraćam lambda izraz jer je UserDetailsService funkcijsko sucelje
 	@Bean
-	@Order(2)
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf(AbstractHttpConfigurer::disable) // TODO: Naći bolji način za "odzabraniti" (ne vratiti 403) POST
-													// requestove
-				.authorizeHttpRequests(authorizeRequests -> authorizeRequests
-						.requestMatchers("/", "/index.html", "/assets/**", "/oauth2/**", "/login/**").permitAll()
-						.anyRequest().authenticated())
-				.oauth2Login(config -> config.clientRegistrationRepository(this.clientRegistrationRepository())
-						.userInfoEndpoint(userInfo -> userInfo.userService(this.oauth2UserService()))
-						.successHandler(new SimpleUrlAuthenticationSuccessHandler("/")));
+	public UserDetailsService userDetailsService() {
+		return username -> {
+			CustomUser user = userRepo.findByUsername(username)
+					.orElseThrow();
+			String password = user.getPassword();
+			
+			return new User(username, password, Collections.emptyList());
+		};
+	}
+	
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http
+		.csrf(AbstractHttpConfigurer::disable)
+		.authorizeHttpRequests(authorizeRequests -> authorizeRequests
+				.requestMatchers("/", "/index.html", "/assets/**", "/oauth2/**", "/login/**",
+						"/register/**").permitAll()
+				.anyRequest().authenticated())
+		.oauth2Login(config -> config.clientRegistrationRepository(this.clientRegistrationRepository())
+				.userInfoEndpoint(userInfo -> userInfo.userService(this.oauth2UserService()))
+				.successHandler(new SimpleUrlAuthenticationSuccessHandler("/")))
+		.formLogin(config -> config.defaultSuccessUrl("/", true));                                                                                                                                                                                                                                ;	
+				
 		return http.build();
 	}
 
@@ -82,9 +83,9 @@ public class WebSecurityConfig {
 			String surname = retUser.getAttribute("family_name");
 			String email = retUser.getAttribute("email");
 			String username = name + surname;
-			CustomUser newUser = new CustomUser(name, surname, email, username);
+			CustomUser newUser = new CustomUser(email, username);
 
-			if (!userRepo.findByEmail(email).isPresent()) {
+			if (!userRepo.findByUsername(username).isPresent()) {
 				userRepo.save(newUser);
 			}
 

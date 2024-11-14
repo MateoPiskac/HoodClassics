@@ -6,5 +6,5 @@ import hoodclassics.opp.domain.CustomUser;
 
 public interface UserService {
 	List<CustomUser> listUsers();
-	void addUser(CustomUser user);
+	void registerUser(String username, String password);
 }

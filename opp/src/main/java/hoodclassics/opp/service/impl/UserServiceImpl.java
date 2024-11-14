@@ -3,6 +3,7 @@ package hoodclassics.opp.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import hoodclassics.opp.dao.UserRepository;
@@ -20,10 +21,12 @@ public class UserServiceImpl implements UserService {
 		return userRepo.findAll();
 	}
 
-	// TODO: Dodati informativniju poruku ako je email isti (sad je 501)
 	@Override
-	public void addUser(CustomUser user) {
-		userRepo.save(user);
+	public void registerUser(String username, String password) {
+		String email = null;
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		password = encoder.encode(password);
+		userRepo.save(new CustomUser(email, username, password));
 	}
 
 }

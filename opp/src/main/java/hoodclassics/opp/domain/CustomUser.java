@@ -1,5 +1,7 @@
 package hoodclassics.opp.domain;
 
+import org.springframework.lang.NonNull;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,41 +16,32 @@ public class CustomUser {
 	@GeneratedValue
 	private Long id;
 	
-	private String name;
-	private String surname;
-	
-	@Column(unique=true)
 	private String email;
-	
+	@Column(unique = true)
+	@NonNull
 	private String username;
+	private String password;
 
-	public CustomUser(String name, String surname, String email, String username) {
-		this.name = name;
-		this.surname = surname;
+	public CustomUser(String email, String username, String password) {
 		this.email = email;
 		this.username = username;
+		this.password = password;
+	}
+	
+	public CustomUser(String email, String username) {
+		this.email = email;
+		this.username = username;
+		this.password = null;
 	}
 
 	//Spring ovo treba ali ne znam zašto
 	public CustomUser() {
-		this.name = null;
-		this.surname = null;
 		this.email = null;
 		this.username = null;
+		this.password = null;
 	}
 
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getSurname() {
-		return surname;
-	}
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -61,13 +54,20 @@ public class CustomUser {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public Long getId() {
 		return id;
 	}
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", username="
+		return "User [id=" + id + ", email=" + email + ", username="
 				+ username + "]";
 	}
 	

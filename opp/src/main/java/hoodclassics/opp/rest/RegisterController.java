@@ -1,25 +1,23 @@
 package hoodclassics.opp.rest;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import hoodclassics.opp.domain.CustomUser;
 import hoodclassics.opp.service.UserService;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
-
+@RequestMapping("/register")
+public class RegisterController {
+	
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/list")
-	public List<CustomUser> listAll() {
-		return userService.listUsers();
+	@PostMapping
+	public void register(@RequestParam String username, @RequestParam String password) {
+		userService.registerUser(username, password);
 	}
 	
 }
