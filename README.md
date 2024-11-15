@@ -1,82 +1,62 @@
-# Programsko inženjerstvo
-
-> Ime projekta u naslovu ima cilj opisati namjenu projekta te pomoći u podizanju početnog interesa za projekt prezentirajući osnovnu svrhu projekta.
-> Isključivo ovisi o Vama!
-> 
-> Naravno, nijedan predložak nije idealan za sve projekte jer su potrebe i ciljevi različiti. Ne bojte se naglasiti Vaš cilj u ovoj početnoj stranici projekta, podržat ćemo ga bez obzira usredotočili se Vi više na tenologiju ili marketing.
-> 
-> Zašto ovaj dokument? Samo manji dio timova je do sada propoznao potrebu (a i meni je lakše pratiti Vaš rad).  
+# Programsko inženjerstvo - Projekt HoodClassics
 
 # Opis projekta
-Ovaj projekt je reultat timskog rada u sklopu projeknog zadatka kolegija [Programsko inženjerstvo](https://www.fer.unizg.hr/predmet/proinz) na Fakultetu elektrotehnike i računarstva Sveučilišta u Zagrebu. 
+HoodClassics je web aplikacija osmišljena za sve one koji žele dublje upoznati mjesto koje posjećuju – kroz lokalne priče, legende i skrivena značenja koja ga čine posebnim.
 
-Kratko opisati cilj Vašeg projekta. Vaša motivacija?  (Napomena: odgovor nije »Zato što je to bio zadatak i nismo imali ideje za drugo.«). Koji problem rješavate?
-> Obzirom da je ovo zadani projekt navedite i što želite/jeste novo  naučili.
+Omogućuje korisnicima da razgledavaju mjesto kroz interaktivnu mapu sa pinovima. Kada kliknete na pin, otvara vam se objava s informacijama i pričama vezanim za tu lokaciju, pružajući vam autentičan pogled na lokalni život i kulturu. 
 
-> Dobro izrađen opis omogućuje vam da pokažete svoj rad drugim programerima, kao i potencijalnim poslodavcima. Ne samo da prvi dojam na stranici opisa često razlikuje dobar projekt od lošeg projekta već i predstavlja dobru praksu koju morate savladati.
+Svojim doprinosima lokalni korisnici obogaćuju iskustvo svih posjetitelja, čineći HoodClassics dinamičnom zajednicom u kojoj je svaki doprinos priča s dušom.
 
-# Funkcijski zahtjevi
+# Ciljevi projekta
+Razvoj ove aplikacije ima nekoliko ključnih ciljeva. Prvenstveno, omogućit će nam praktično upoznavanje s alatima i tehnologijama za razvoj web i mobilnih aplikacija. Ovaj projekt pruža priliku da se kroz konkretan rad upoznamo s cijelim procesom razvoja, od početne ideje do završne implementacije, uključujući važno dokumentiranje svih koraka kako bismo stekli navike temeljite projektne organizacije.
 
- Aplikacija mora podržavati tri različite korisničke uloge:
- 
-	- lokalac
-	- turist
-	- moderator
-	
-Aplikacija mora omogućiti pristup bez registracije u kojem se slučaju implicitno uzima uloga turista. U toj (i svim drugim ulogama) moguć je pregled ugrađene
-karte na kojoj su prikazani pinovi.
-	
-Pri registraciji, korisnik aplikacije bira mjesto stanovanja. Dok je unutar granica tog mjesta, registrirani korisnik može poprimiti ulogu lokalca.
+Nadalje, projekt će nam pomoći u razvijanju komunikacijskih vještina, jer ćemo tijekom rada surađivati i komunicirati unutar tima, što je ključno za koordinirano i učinkovito rješavanje zadataka. Na taj način stječemo vrijedno iskustvo timskog rada i učenja u simuliranom radnom okruženju, što će nas bolje pripremiti za složenije izazove i profesionalne projekte u budućnosti.
 
-Aplikacija mora podržavati mogućnost lokalca da na kartu doda pin koji sadrži objavu.
+# Ključni funkcijski zahtjevi
+Za naš projekt analizirali smo i definirali niz funkcionalnih zahtjeva koji detaljno opisuju ključne funkcionalnosti aplikacije. Ovdje su izdvojeni ključni zahtjevi za lakše razumijevanje funkcionalnosti aplikacije.
 
-Objava može sadržavati tekst, sliku i tagove.
-
-Aplikacija mora omogućiti filtriranje pinova po tagovima.
-
-Aplikacija mora omogućiti svim registriranim korisnicima da označe objavu sa "sviđa mi se" ili "ne sviđa mi se".
-
-Aplikacija mora omogućiti registriranim korisnicima mogućnost da prijave neprimjeren sadržaj.
-
-Aplikacija mora omogućiti korisnicima u ulozi lokalca da prijave netočne objave.
-
-Moderator može pregledati prijave i ukloniti objave/pin-ove.
-
-Moderator može drugim registriranim korisnicima dodijeliti ulogu moderatora.
-
-Aplikacija mora omogućiti rangiranje pinova u nekom području po broju ljudi koji su ih označili sa "sviđa mi se". 
-
+*  Sustav prikazuje kartu na kojoj su prikazani pinovi.
+    * Prikazuje interaktivnu kartu s pinovima koji označavaju lokacije priča i kulturnih sadržaja.
+*  Sustav podržava tri različite korisničke uloge: lokalac, turist, moderator.
+    * Različite korisničke uloge omogućuju pristup specifičnim funkcionalnostima, uključujući dodavanje i moderiranje sadržaja.
+*  Lokalac može napraviti objavu.
+    * Registrirani lokalci mogu stvarati objave o lokacijama, uključujući priče i kulturne detalje.
+*  Aplikacija mora omogućiti filtriranje pinova po tagovima.
+    * Korisnici mogu filtrirati lokacije po tagovima kako bi lakše pronašli sadržaje vezane za svoje interese.
+*  Sustav omogućuje korisnicima kreiranje računa pomoću e-mail adrese.
+    * Registracija putem e-maila omogućuje korisnicima pristup personaliziranim funkcijama i kreiranje sadržaja.
+*  Sustav omogućuje korištenje aplikacije bez prijave.
+    * Aplikacija je dostupna za osnovno pregledavanje i korištenje i bez registracije.
 
 # Tehnologije
-Trenutni plan je za backend koristiti Java spring, a za frontend React. 
-> Popis članova tima:
-> Hrvoje Radoš
-> Mateo Piskač
-> Ivan Bevanda
-> Dora Strmečki
-> Duje Ćubelić
-> Jakov Borić
+Za naš projekt odabrali smo ove alate: 
 
-# Kontribucije
+* Frontend: Koristimo React u kombinaciji s TypeScriptom za pisanje komponenata i osiguravanje sigurnih tipova podataka, što pomaže u lakšem održavanju i boljoj čitljivosti koda. Za dizajn korisničkog sučelja upotrebljavamo Material UI koji omogućava elegantan i responzivan dizajn aplikacije.
+* Backend: Backend je izgrađen na Spring frameworku koji pruža snažne alate za razvoj i održavanje aplikacije, posebno u područjima vezanim za sigurnost, upravljanje podacima i rad s RESTful API-jem.
+* Deployment: Aplikaciju postavljamo na platformu Render, koja nudi automatiziran i skalabilan deployment te pojednostavljuje održavanje i ažuriranje aplikacije.
+* Autentifikacija: Koristimo OAuth 2.0 za autentifikaciju, osiguravajući tako sigurnost korisničkih podataka i omogućujući jednostavnu integraciju s drugim pružateljima identiteta, poput Google računa.
+
+# Način rada
+
+Za uspješan rad na projektu, tim je definirao jasna pravila za podjelu rada i komunikaciju. Članovi tima preuzimaju zadatke prema vlastitim interesima i područjima stručnosti. Ovaj pristup osigurava da svatko radi na aspektima projekta gdje može dati svoj najveći doprinos, čime se povećava kvaliteta i učinkovitost rada.
+
+Za koordinaciju i razmjenu informacija koristi se kombinacija komunikacijskih alata, uključujući WhatsApp za brze poruke i Discord za strukturirane rasprave i suradnju. Također,  organizirani su sastanci uživo i online, što omogućuje dublju raspravu o ključnim točkama i donošenje zajedničkih odluka.
 
 
+# Članovi tima 
 
-# 📝 Kodeks ponašanja [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
-Kao studenti sigurno ste upoznati s minimumom prihvatljivog ponašanja definiran u [KODEKS PONAŠANJA STUDENATA FAKULTETA ELEKTROTEHNIKE I RAČUNARSTVA SVEUČILIŠTA U ZAGREBU](https://www.fer.hr/_download/repository/Kodeks_ponasanja_studenata_FER-a_procisceni_tekst_2016%5B1%5D.pdf), te dodatnim naputcima za timski rad na predmetu [Programsko inženjerstvo](https://wwww.fer.hr).
-Očekujemo da ćete poštovati [etički kodeks IEEE-a](https://www.ieee.org/about/corporate/governance/p7-8.html) koji ima važnu obrazovnu funkciju sa svrhom postavljanja najviših standarda integriteta, odgovornog ponašanja i etičkog ponašanja u profesionalnim aktivnosti. Time profesionalna zajednica programskih inženjera definira opća načela koja definiranju  moralni karakter, donošenje važnih poslovnih odluka i uspostavljanje jasnih moralnih očekivanja za sve pripadnike zajenice.
+Hrvoje Radoš: voditelj tima, backend 
 
-Kodeks ponašanja skup je provedivih pravila koja služe za jasnu komunikaciju očekivanja i zahtjeva za rad zajednice/tima. Njime se jasno definiraju obaveze, prava, neprihvatljiva ponašanja te  odgovarajuće posljedice (za razliku od etičkog kodeksa). U ovom repozitoriju dan je jedan od široko prihvačenih kodeks ponašanja za rad u zajednici otvorenog koda.
->### Poboljšajte funkcioniranje tima:
->* definirajte načina na koji će rad biti podijeljen među članovima grupe
->* dogovorite kako će grupa međusobno komunicirati.
->* ne gubite vrijeme na dogovore na koji će grupa rješavati sporove primjenite standarde!
->* implicitno podrazmijevamo da će svi članovi grupe slijediti kodeks ponašanja.
- 
->###  Prijava problema
->Najgore što se može dogoditi je da netko šuti kad postoje problemi. Postoji nekoliko stvari koje možete učiniti kako biste najbolje riješili sukobe i probleme:
->* Obratite mi se izravno [e-pošta](mailto:vlado.sruk@fer.hr) i  učinit ćemo sve što je u našoj moći da u punom povjerenju saznamo koje korake trebamo poduzeti kako bismo riješili problem.
->* Razgovarajte s vašim asistentom jer ima najbolji uvid u dinamiku tima. Zajedno ćete saznati kako riješiti sukob i kako izbjeći daljnje utjecanje u vašem radu.
->* Ako se osjećate ugodno neposredno razgovarajte o problemu. Manje incidente trebalo bi rješavati izravno. Odvojite vrijeme i privatno razgovarajte s pogođenim članom tima te vjerujte u iskrenost.
+Ivan Bevanda: backend
+
+Duje Ćubelić: backend
+
+Jakov Borić: frontend
+
+Mateo Piskač: frontend
+
+Dora Strmečki: dokumentacija
+
 
 # 📝 Licenca
 Važeča (1)
