@@ -7,6 +7,8 @@ Omogućuje korisnicima da razgledavaju mjesto kroz interaktivnu mapu sa pinovima
 
 Svojim doprinosima lokalni korisnici obogaćuju iskustvo svih posjetitelja, čineći HoodClassics dinamičnom zajednicom u kojoj je svaki doprinos priča s dušom.
 
+Naša će aplikacija biti razrađena na engleskom jeziku kako bi ju jednostavije koristili i strani korisnici budući da je fokus aplikacije na turizam, te kako bi se u budućnosti jednostavnije skalirala za korištenje na većem području.
+
 # Ciljevi projekta
 Razvoj ove aplikacije ima nekoliko ključnih ciljeva. Prvenstveno, omogućit će nam praktično upoznavanje s alatima i tehnologijama za razvoj web i mobilnih aplikacija. Ovaj projekt pruža priliku da se kroz konkretan rad upoznamo s cijelim procesom razvoja, od početne ideje do završne implementacije, uključujući važno dokumentiranje svih koraka kako bismo stekli navike temeljite projektne organizacije.
 
