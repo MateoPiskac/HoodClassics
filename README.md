@@ -47,7 +47,7 @@ Za koordinaciju i razmjenu informacija koristi se kombinacija komunikacijskih al
 
 # Članovi tima 
 
-Hrvoje Radoš: voditelj tima, backend 
+Hrvoje Radoš: voditelj tima, fullstack
 
 Ivan Bevanda: backend
 
